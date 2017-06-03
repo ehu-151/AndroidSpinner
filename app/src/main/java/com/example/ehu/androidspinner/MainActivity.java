@@ -1,5 +1,6 @@
 package com.example.ehu.androidspinner;
 
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
     //ハンドスピナー画像の宣言
     ImageView handSpinnerImage;
+    Vibrator vb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         handSpinnerImage = (ImageView) findViewById(R.id.handSpinner);
     }
 
+    //ハンドスピナーを回転させる
     public void startSpinner(View v) {
 
         RotateAnimation rotate = new RotateAnimation(0, 360, handSpinnerImage.getWidth() / 2, (handSpinnerImage.getHeight() / 2) + 75); // 画像の中心を軸に、0度から360度にかけて回転
@@ -27,9 +30,15 @@ public class MainActivity extends AppCompatActivity {
         rotate.setInterpolator(new LinearInterpolator());   //繰り返し終了時止まらない
         rotate.setRepeatCount(rotate.INFINITE); //ずっと繰り返す
         handSpinnerImage.startAnimation(rotate); // アニメーション適用
+
+        //バイブレーションで振動させる
+        vb = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        vb.vibrate(5000);
     }
 
+    //ハンドスピナーを止める
     public void stopSpinner(View v) {
-        handSpinnerImage.clearAnimation();
+        handSpinnerImage.clearAnimation();  //回転を止める
+        vb.cancel();    //バイブレーションを止める
     }
 }
