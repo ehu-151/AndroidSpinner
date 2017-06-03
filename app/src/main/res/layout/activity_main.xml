@@ -4,24 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ehu.androidspinner.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.example.ehu.androidspinner.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/handSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/handspinner"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/handspinner" />
 
     <Button
         android:id="@+id/stopSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="stopSpinner"
         android:text="止める" />
+
     <Button
         android:id="@+id/startSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ゴーシュート！" />
+        android:onClick="startSpinner"
+        android:text="3・2・1ゴーシュート！" />
 </LinearLayout>
