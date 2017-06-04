@@ -46,15 +46,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //アプリが中断された時
     @Override
     public void onPause() {
         super.onPause();
+        //ハンドスピナーを止める
         stopSpinner();
     }
 
+    //アプリを閉じた時
     @Override
     public void onDestroy() {
         super.onDestroy();
+        //ハンドスピナーを止める
         stopSpinner();
     }
 
@@ -84,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onLongPress(MotionEvent event) {
+            //ハンドスピナーを止める
             stopSpinner();
         }
     };
@@ -97,22 +102,24 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
+        //ハードウェアの大きさ
         double xM = (dm.widthPixels / dm.xdpi * 2.54) * 0.01;
         double yM = (dm.heightPixels / dm.ydpi * 2.54) * 0.01;
-
         Log.d("MainActivity", "幅 = " + xM + "m" + "   高さ = " + yM + "m");
+
+        //フリックの速さ
         double m_s = velocity * yM / dm.heightPixels;
         Log.d("m/s", String.valueOf(m_s));
 
-        double T = 2 * 3.14 * yM / m_s;
-        rotate.setDuration((long) (T * 1000)); // 3000msかけてアニメーションする
+        double T = 2 * 3.14 * yM / m_s; //周期T
+        rotate.setDuration((long) (T * 1000)); // 周期T分、かけてアニメーションする
         Log.d("周期", String.valueOf(T));
         rotate.setInterpolator(new LinearInterpolator());   //繰り返し終了時止まらない
         rotate.setRepeatCount(rotate.INFINITE); //ずっと繰り返す
         handSpinnerImage.startAnimation(rotate); // アニメーション適用
 
         // バイブレーションで振動させる
-//        vb.vibrate(rotateTime * repeatCount);
+        vb.vibrate(10000);  //10秒間振動
 
         Log.d("start", "回転");
     }
@@ -120,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     //ハンドスピナーを止める
     public void stopSpinner() {
         handSpinnerImage.clearAnimation();  //回転を止める
-//        vb.cancel();    //バイブレーションを止める
+        vb.cancel();    //バイブレーションを止める
 
         Log.d("stop", "停止");
     }
