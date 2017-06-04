@@ -14,17 +14,5 @@
         android:adjustViewBounds="true"
         app:srcCompat="@drawable/handspinner" />
 
-    <Button
-        android:id="@+id/stopSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="stopSpinner"
-        android:text="止める" />
 
-    <Button
-        android:id="@+id/startSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="startSpinner"
-        android:text="3・2・1ゴーシュート！" />
 </LinearLayout>
